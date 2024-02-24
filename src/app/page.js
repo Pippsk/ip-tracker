@@ -1,95 +1,70 @@
+// "use client";
+
 import Image from "next/image";
 import styles from "./page.module.css";
+import arrow from "../../public/icon-arrow.svg";
+import Map from "@/components/Map";
 
-export default function Home() {
+const getIpData = async () => {
+  const res = await fetch(
+    "https://geo.ipify.org/api/v2/country,city?apiKey=at_IVPlc0WzdRsypuVMtGzWc5o7ErWn1&ipAddress=8.8.8.8"
+  );
+
+  if (!res.ok) {
+    throw new Error("failed to fetch ip data");
+  }
+
+  return await res.json();
+};
+
+export default async function Home() {
+  const ip = await getIpData();
+  console.log(ip);
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+      <section className={styles.topSection}>
+        <h1>IP Address Tracker</h1>
+
+        <div className={styles.inputContainer}>
+          <input
+            type="text"
+            name="ip"
+            id="ip"
+            placeholder="Search  IP address..."
+          />
+          <button type="submit">
+            <Image src={arrow} alt="arrow-icon" />
+          </button>
         </div>
-      </div>
+      </section>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <section className={styles.detailsSection}>
+        <div>
+          <p>Ip Address</p>
+          <h3>8.8.8.8</h3>
+        </div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+        <hr />
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+        <div>
+          <p>Location</p>
+          <h3>{ip.location.city}</h3>
+        </div>
+        <hr />
+        <div>
+          <p>Time Zone</p>
+          <h3>-05:00</h3>
+        </div>
+        <hr />
+        <div>
+          <p>ISP</p>
+          <h3>Google</h3>
+        </div>
+      </section>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <section className={styles.mapSection}>
+        <Map />
+      </section>
     </main>
   );
 }
