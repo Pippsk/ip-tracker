@@ -5,17 +5,22 @@ import MarkerIcon from "../../node_modules/leaflet/dist/images/marker-icon.png";
 import MarkerShadow from "../../node_modules/leaflet/dist/images/marker-shadow.png";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import MarkerPosition from "./MarkerPosition";
 
-const Map = () => {
+const Map = ({ location }) => {
   return (
     <div>
-      <MapContainer className={styles.map} center={[51.505, -0.09]} zoom={12}>
+      <MapContainer
+        className={styles.map}
+        center={[location.lat, location.lng]}
+        zoom={12}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        <Marker
+        {/* <Marker
           icon={
             new L.icon({
               iconUrl: MarkerIcon.src,
@@ -27,10 +32,12 @@ const Map = () => {
               shadowSize: [41, 41],
             })
           }
-          position={[51.505, -0.09]}
+          position={[location.lat, location.lng]}
         >
           <Popup>this is a popup</Popup>
-        </Marker>
+        </Marker> */}
+
+        <MarkerPosition location={location} />
       </MapContainer>
     </div>
   );

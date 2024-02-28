@@ -1,0 +1,26 @@
+.inputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  width: 300px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.inputContainer input {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.inputContainer button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding: 10px;
+  background-color: black;
+  cursor: pointer;
+}
