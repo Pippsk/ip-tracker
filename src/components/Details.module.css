@@ -45,14 +45,6 @@
 
   .detailsSection div {
     text-align: left;
-
-    justify-content: space-evenly;
-  }
-
-  .detailsSection hr {
-    width: 1px;
-    height: 50px;
-    color: black;
   }
 
   .detailsSection h3 {

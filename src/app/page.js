@@ -5,7 +5,7 @@ import Map from "@/components/MapIndex";
 
 const getIpData = async (ip) => {
   const res = await fetch(
-    `https://geo.ipify.org/api/v2/country,city?apiKey=at_IVPlc0WzdRsypuVMtGzWc5o7ErWn1&ipAddress=${ip}`
+    ` https://geo.ipify.org/api/v2/country,city?apiKey=at_IVPlc0WzdRsypuVMtGzWc5o7ErWn1&ipAddress=${ip}`
   );
 
   if (!res.ok) {
@@ -43,20 +43,18 @@ export default async function Home({ searchParams }) {
           <h3>{ipCode}</h3>
         </div>
 
-        <hr />
-
         <div>
           <p>Location</p>
           <h3>
             {location.region}, {location.city}
           </h3>
         </div>
-        <hr />
+
         <div>
           <p>Time Zone</p>
           <h3>{location.timezone}</h3>
         </div>
-        <hr />
+
         <div>
           <p>ISP</p>
           <h3>{ipData.isp}</h3>
